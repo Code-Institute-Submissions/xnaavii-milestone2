@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", runGame);
 let username = document.getElementById("username").innerText = window.prompt("Enter Your Username!");
 
 function runGame() {
-
   // Select all elements with the class "tile" and other necessary elements
   const tiles = document.querySelectorAll(".tile");
   const resetButton = document.getElementById("reset-btn");
@@ -32,9 +31,9 @@ function runGame() {
     // Check if the tile is not already flipped and there are fewer than 2 flipped tiles
     if (!tile.classList.contains("flipped") && flippedTiles.length < 2) {
       // Add the flipped class to the tile
-      tile.classList.add("fliped");
+      tile.classList.add("flipped");
       // Find the inner tile element
-      const tileInner = document.querySelector(".tile-inner");
+      const tileInner = tile.querySelector(".tile-inner");
       // Find the image within the tile
       const image = tile.querySelector("img");
       // Show the tile background and add the class "visible"
@@ -47,8 +46,6 @@ function runGame() {
       flippedTiles.push(tile);
       checkForMatch();
     }
-
-
   }
 
   // Check if two flipped tiles match
@@ -73,7 +70,7 @@ function runGame() {
           setTimeout(() => {
             // Alert the player that game is won!
             alert("Congratulations! You've won the game");
-
+            resetGame();
           }, 500) // Delay the message
         }
       } else {
@@ -98,17 +95,40 @@ function runGame() {
           lives--;
           // Update the lives text
           livesElement.textContent = lives;
-
           // If player has no lives left, alert with the message
           if (lives === 0) {
             setTimeout(() => {
               alert("Game Over! Try Again!");
+              resetGame();
             }, 500)
           }
         }, 1000)
       }
     }
   }
+  // Reset the game
+  function resetGame() {
+    // Clear the flipped tiles array, reset score and lives
+    flippedTiles = [];
+    score = 0;
+    lives = 6;
+    scoreElement.textContent = score;
+    livesElement.textContent = lives;
+    // Shuffle the tiles
+    shuffleTiles();
+    // Reset all tiles to their initial state
+    tiles.forEach(tile => {
+      tile.classList.remove("flipped");
+      const tileInner = tile.querySelector(".tile-inner");
+      tileInner.style.transform = "rotateY(0deg)";
+      const image = tile.querySelector("img");
+      image.classList.add("hidden");
+    })
+  }
+
+  // Event listener for the reset button
+  resetButton.addEventListener("click", resetGame);
+
 
   // Event listener for each tile to flip and reveal the image
   tiles.forEach(tile => {
