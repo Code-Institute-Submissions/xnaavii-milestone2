@@ -1,10 +1,17 @@
 // Call the function to run the game when the page loads
 document.addEventListener("DOMContentLoaded", function () {
-  runGame();
 
-  document.getElementById("username").innerText = window.prompt("Enter Your Username!");
+  const howToPlayOverlay = document.getElementById("howToPlayOverlay");
+  howToPlayOverlay.style.display = "flex";
+  const startButton = document.getElementById("start-button");
+  startButton.addEventListener("click", function () {
+    howToPlayOverlay.style.display = "none";
+    runGame();
+  })
 
   function runGame() {
+
+    document.getElementById("username").innerText = window.prompt("Enter Your Username!");
     // Select all elements with the class "tile" and other necessary elements
     const tiles = document.querySelectorAll(".tile");
     const resetButton = document.getElementById("reset-btn");
@@ -44,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         image.classList.remove("hidden");
         // Add the flipped tile to the array
         flippedTiles.push(tile);
-        
+
         checkForMatch();
       }
     }
@@ -68,11 +75,14 @@ document.addEventListener("DOMContentLoaded", function () {
           flippedTiles = [];
           // Check if all tiles are matched
           if (matchedPairs === tiles.length / 2) {
-            setTimeout(() => {
-              // Alert the player that game is won!
-              alert("Congratulations! You've won the game");
-              resetGame();
-            }, 500) // Delay the message
+            const allTilesMatched = Array.from(tiles).every(tile => tile.classList.contains("flipped"));
+            if (allTilesMatched) {
+              setTimeout(() => {
+                // Alert the player that game is won!
+                alert("Congratulations! You've won the game");
+                resetGame();
+              }, 500) // Delay the message
+            }
           }
         } else {
           // If the tiles don't match, flip them back after a delay
