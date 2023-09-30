@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const resetButton = document.getElementById("reset-btn");
     const scoreElement = document.getElementById("score");
     const livesElement = document.getElementById("lives");
+    const startButton = document.getElementById("start-button");
 
     // Set the variable values
     let flippedTiles = [];
@@ -37,6 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to flip a tile 
     function flipTile(tile) {
+      const tileFlipSound = document.getElementById("tile-flip");
+      tileFlipSound.currentTime = 0;
+      tileFlipSound.play();
       // Check if the tile is not already flipped and there are fewer than 2 flipped tiles
       if (!tile.classList.contains("flipped") && flippedTiles.length < 2) {
         // Add the flipped class to the tile
@@ -73,18 +77,22 @@ document.addEventListener("DOMContentLoaded", function () {
           // Update the score text
           scoreElement.textContent = score;
           flippedTiles = [];
+          // Play sound when tiles match
+          const matchSound = document.getElementById("matchSound");
+          matchSound.currentTime = 0;
+          matchSound.play();
           // Check if all tiles are matched
           if (matchedPairs === tiles.length / 2) {
-            const allTilesMatched = Array.from(tiles).every(tile => tile.classList.contains("flipped"));
-            if (allTilesMatched) {
               setTimeout(() => {
                 // Alert the player that game is won!
                 alert("Congratulations! You've won the game");
                 resetGame();
               }, 500) // Delay the message
-            }
           }
         } else {
+          const misMatchSound = document.getElementById("mismatch-sound");
+          misMatchSound.currentTime = 0;
+          misMatchSound.play();
           // If the tiles don't match, flip them back after a delay
           setTimeout(() => {
             // Remove the flipped class from both tiles
@@ -108,6 +116,9 @@ document.addEventListener("DOMContentLoaded", function () {
             livesElement.textContent = lives;
             // If player has no lives left, alert with the message
             if (lives === 0) {
+              // Play sound when game is lost
+              const gameOverSound = document.getElementById("gameOverSound");
+              gameOverSound.play();
               setTimeout(() => {
                 alert("Game Over! Try Again!");
                 resetGame();
@@ -119,10 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // Reset the game
     function resetGame() {
+      const shuffleTileSound = document.getElementById("shuffle-sound");
+      shuffleTileSound.play();
       // Clear the flipped tiles array, reset score and lives
       flippedTiles = [];
       score = 0;
       lives = 6;
+      matchedPairs = 0;
       scoreElement.textContent = score;
       livesElement.textContent = lives;
       // Shuffle the tiles
@@ -139,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Event listener for the reset button
     resetButton.addEventListener("click", resetGame);
+    
 
 
     // Event listener for each tile to flip and reveal the image

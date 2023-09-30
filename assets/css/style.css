@@ -21,7 +21,7 @@ h1, h2, h3 {
     padding: 20px;
     justify-content: center;
     background-color: #ddfff7;
-    border-radius: 15px;
+    border-radius: 5px;
     perspective: 1000px;
 }
 
@@ -35,7 +35,7 @@ h1, h2, h3 {
     background-color: #93e1d8;
     border: none;
     box-shadow: 0px 3px 10px #93e1d8;
-    border-radius: 15px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -105,7 +105,7 @@ button:active {
 .modal {
     background-color: #ddfff7;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
 
 }
@@ -133,7 +133,7 @@ button:active {
     opacity: 0.8;
     margin-top: 20px; 
     border: none;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 /* Style the reset button*/
