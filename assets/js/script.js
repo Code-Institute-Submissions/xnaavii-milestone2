@@ -38,9 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to flip a tile 
     function flipTile(tile) {
-      const tileFlipSound = document.getElementById("tile-flip");
-      tileFlipSound.currentTime = 0;
-      tileFlipSound.play();
       // Check if the tile is not already flipped and there are fewer than 2 flipped tiles
       if (!tile.classList.contains("flipped") && flippedTiles.length < 2) {
         // Add the flipped class to the tile
@@ -83,6 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
           matchSound.play();
           // Check if all tiles are matched
           if (matchedPairs === tiles.length / 2) {
+            const tilesCleared = document.getElementById("tiles-cleared");
+            tilesCleared.play();
               setTimeout(() => {
                 // Alert the player that game is won!
                 alert("Congratulations! You've won the game");
