@@ -82,11 +82,11 @@ document.addEventListener("DOMContentLoaded", function () {
           if (matchedPairs === tiles.length / 2) {
             const tilesCleared = document.getElementById("tiles-cleared");
             tilesCleared.play();
-              setTimeout(() => {
-                // Alert the player that game is won!
-                alert("Congratulations! You've won the game");
-                resetGame();
-              }, 500) // Delay the message
+            setTimeout(() => {
+              // Alert the player that game is won!
+              alert("Congratulations! You've won the game");
+              resetGame();
+            }, 500) // Delay the message
           }
         } else {
           // If the tiles don't match, flip them back after a delay
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Event listener for the reset button
     resetButton.addEventListener("click", resetGame);
-    
+
 
 
     // Event listener for each tile to flip and reveal the image

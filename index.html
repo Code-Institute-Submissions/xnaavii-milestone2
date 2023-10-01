@@ -15,7 +15,7 @@
     <!-- Sound when tile is matched -->
     <audio id="matchSound" preload="auto">
         <source src="assets/audio/correct-answer.mp3" type="audio/mpeg">
-    </audio> 
+    </audio>
     <!-- Tiles cleared sound-->
     <audio id="tiles-cleared">
         <source src="assets/audio/tiles-cleared.mp3" type="audio/mpeg">
@@ -24,6 +24,7 @@
     <audio id="gameOverSound" preload="auto">
         <source src="assets/audio/cat-meow.mp3" type="audio/mpeg">
     </audio>
+    <!-- Sound when tiles are shuffled-->
     <audio id="shuffle-sound">
         <source src="assets/audio/shuffle-sound.mp3" type="audio/mpeg">
     </audio>
@@ -32,7 +33,6 @@
 <body>
     <!-- Game Header -->
     <header>Animal Match</header>
-    <h2>Player: <span id="username"></span></h2>
     <!-- Game overlay with instructions-->
     <div class="overlay" id="howToPlayOverlay">
         <div class="modal">
@@ -42,68 +42,87 @@
             <ol>
                 <li>Click on a tile to reveal the image.</li>
                 <li>Click on another tile to find its matching pair.</li>
-                <li>If the tiles match, they will stay face up. If they don't match, they will flip back.</li>
-                <li>Keep flipping tiles and try to match all pairs.</li>
-                <li>Your score increases by 10 points for each pair matched.</li>
-                <li>You have 6 lives. Losing a pair costs you 1 life.</li>
-                <li>If you lose all your lives, the game is over.</li>
                 <li>Match all pairs to win!</li>
             </ol>
             <!-- Start Game button-->
-            <button id="start-button">Start Game</button>
+            <button id="start-button">Start!</button>
         </div>
     </div>
     <section class="game-container">
-    <!-- Game tiles container-->
-    <div class="tiles">
-        <!-- Individual game tiles with data values-->
-        <div class="tile" data-value="A">
-            <div class="tile-inner"><img src="assets/images/frog.png" alt="Frog Illustration" class="hidden"></div>
-        </div>
-        <div class="tile" data-value="A">
-            <div class="tile-inner"><img src="assets/images/frog.png" alt="Frog Illustration" class="hidden"></div>
-        </div>
-        <div class="tile" data-value="B">
-            <div class="tile-inner"><img src="assets/images/snake.png" alt="Snake Illustration" class="hidden"></div>
-        </div>
-        <div class="tile" data-value="B">
-            <div class="tile-inner"><img src="assets/images/snake.png" alt="Snake Illustration" class="hidden"></div>
-        </div>
-        <div class="tile" data-value="C">
-            <div class="tile-inner"><img src="assets/images/giraffe.png" alt="Giraffe Illustration" class="hidden">
+        <h2>Player: <span id="username"></span></h2>
+        <!-- Game tiles container-->
+        <div class="tiles">
+            <!-- Individual game tiles with data values-->
+            <div class="tile" data-value="A">
+                <div class="tile-inner"><img src="assets/images/frog.png" alt="Frog Illustration" class="hidden"></div>
+            </div>
+            <div class="tile" data-value="A">
+                <div class="tile-inner"><img src="assets/images/frog.png" alt="Frog Illustration" class="hidden"></div>
+            </div>
+            <div class="tile" data-value="B">
+                <div class="tile-inner"><img src="assets/images/snake.png" alt="Snake Illustration" class="hidden">
+                </div>
+            </div>
+            <div class="tile" data-value="B">
+                <div class="tile-inner"><img src="assets/images/snake.png" alt="Snake Illustration" class="hidden">
+                </div>
+            </div>
+            <div class="tile" data-value="C">
+                <div class="tile-inner"><img src="assets/images/giraffe.png" alt="Giraffe Illustration" class="hidden">
+                </div>
+            </div>
+            <div class="tile" data-value="C">
+                <div class="tile-inner"><img src="assets/images/giraffe.png" alt="Giraffe Illustration" class="hidden">
+                </div>
+            </div>
+            <div class="tile" data-value="D">
+                <div class="tile-inner"><img src="assets/images/kitty.png" alt="Cat Illustration" class="hidden"></div>
+            </div>
+            <div class="tile" data-value="D">
+                <div class="tile-inner"><img src="assets/images/kitty.png" alt="Cat Illustration" class="hidden"></div>
+            </div>
+            <div class="tile" data-value="E">
+                <div class="tile-inner"><img src="assets/images/lemur.png" alt="Lemur Illustration" class="hidden">
+                </div>
+            </div>
+            <div class="tile" data-value="E">
+                <div class="tile-inner"><img src="assets/images/lemur.png" alt="Lemur Illustration" class="hidden">
+                </div>
+            </div>
+            <div class="tile" data-value="F">
+                <div class="tile-inner"><img src="assets/images/penguin.png" alt="Penguin Illustration" class="hidden">
+                </div>
+            </div>
+            <div class="tile" data-value="F">
+                <div class="tile-inner"><img src="assets/images/penguin.png" alt="Penguin Illustration" class="hidden">
+                </div>
             </div>
         </div>
-        <div class="tile" data-value="C">
-            <div class="tile-inner"><img src="assets/images/giraffe.png" alt="Giraffe Illustration" class="hidden">
-            </div>
+        <!-- Score and reset button section-->
+        <div class="score-board"><button id="reset-btn">Reset</button>
+            <p>Lives: <span id="lives">6</span></p>
+            <p>Score: <span id="score">0</span></p>
         </div>
-        <div class="tile" data-value="D">
-            <div class="tile-inner"><img src="assets/images/kitty.png" alt="Cat Illustration" class="hidden"></div>
-        </div>
-        <div class="tile" data-value="D">
-            <div class="tile-inner"><img src="assets/images/kitty.png" alt="Cat Illustration" class="hidden"></div>
-        </div>
-        <div class="tile" data-value="E">
-            <div class="tile-inner"><img src="assets/images/lemur.png" alt="Lemur Illustration" class="hidden"></div>
-        </div>
-        <div class="tile" data-value="E">
-            <div class="tile-inner"><img src="assets/images/lemur.png" alt="Lemur Illustration" class="hidden"></div>
-        </div>
-        <div class="tile" data-value="F">
-            <div class="tile-inner"><img src="assets/images/penguin.png" alt="Penguin Illustration" class="hidden">
-            </div>
-        </div>
-        <div class="tile" data-value="F">
-            <div class="tile-inner"><img src="assets/images/penguin.png" alt="Penguin Illustration" class="hidden">
-            </div>
-        </div>
-    </div>
-</section>
-    <!-- Score and reset button section-->
-    <div class="score-board"><button id="reset-btn">Reset</button>
-        <p>Lives: <span id="lives">6</span></p>
-        <p>Score: <span id="score">0</span></p>
-    </div>
+    </section>
+    <footer>
+        <!-- Add social media icons-->
+        <ul id="social-media">
+            <li>
+                <a href="https://www.facebook.com" target="_blank" rel="noopener"
+                    aria-label="Visit our Facebook page (opens in a new tab)"><i class="fa-brands fa-facebook"></i></a>
+            </li>
+            <li>
+                <a href="https://www.twitter.com" target="_blank" rel="noopener"
+                    aria-label="Visit our Twitter page (opens in a new tab)"><i class="fa-brands fa-x-twitter"></i></a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener"
+                    aria-label="Visit our Instagram page (opens in a new tab)"><i
+                        class="fa-brands fa-instagram"></i></a>
+            </li>
+        </ul>
+    </footer>
+    <script src="https://kit.fontawesome.com/64c4a0531b.js" crossorigin="anonymous"></script>
     <script src="assets/js/script.js"></script>
 </body>
 
