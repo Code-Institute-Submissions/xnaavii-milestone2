@@ -87,7 +87,8 @@ h3 {
 .tile {
     transition: transform 0.3s ease;
     width: 100%;
-    height: auto;
+    max-width: 100px;
+    max-height: 100px;
     display: flex;
     justify-content: center;
     background-color: rgba(255, 166, 158, 1);
