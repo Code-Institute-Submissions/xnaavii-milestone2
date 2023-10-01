@@ -89,9 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
               }, 500) // Delay the message
           }
         } else {
-          const misMatchSound = document.getElementById("mismatch-sound");
-          misMatchSound.currentTime = 0;
-          misMatchSound.play();
           // If the tiles don't match, flip them back after a delay
           setTimeout(() => {
             // Remove the flipped class from both tiles
