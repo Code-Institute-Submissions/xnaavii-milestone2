@@ -10,20 +10,29 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 
   function runGame() {
-
-    document.getElementById("username").innerText = window.prompt("Enter Your Username!");
     // Select all elements with the class "tile" and other necessary elements
     const tiles = document.querySelectorAll(".tile");
     const resetButton = document.getElementById("reset-btn");
     const scoreElement = document.getElementById("score");
     const livesElement = document.getElementById("lives");
     const startButton = document.getElementById("start-button");
+    const userInput = window.prompt("Player name?");
 
     // Set the variable values
     let flippedTiles = [];
     let matchedPairs = 0;
     let score = 0;
     let lives = 6;
+
+    // Username prompt and assign random username
+    if (userInput) {
+      document.getElementById("username").innerText = userInput;
+    } else {
+      let randomNames = ["TigerTamer", "PenguinPilot", "KoalaExplorer", "MonkeyMaster", "GiraffeGamer", "OctoOptimist", "GorillaGamer"];
+      let randomIndex = Math.floor(Math.random() * randomNames.length);
+      let randomName = randomNames[randomIndex];
+      document.getElementById("username").innerText = randomName;
+    }
 
     // Function to shuffle the tiles randomly
     function shuffleTiles() {
@@ -84,7 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
             tilesCleared.play();
             setTimeout(() => {
               // Alert the player that game is won!
-              alert("Congratulations! You've won the game");
+              const gamewonOverlay = document.getElementById("gamewonOverlay");
+                gamewonOverlay.style.display = "flex";
+                const playAgainButton = document.getElementById("play-again1");
+                playAgainButton.addEventListener("click", function () {
+                  gamewonOverlay.style.display = "none";
+                })
               resetGame();
             }, 500) // Delay the message
           }
@@ -116,7 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
               const gameOverSound = document.getElementById("gameOverSound");
               gameOverSound.play();
               setTimeout(() => {
-                alert("Game Over! Try Again!");
+                // Alert the player that game is lost
+                const gameoverOverlay = document.getElementById("gameoverOverlay");
+                gameoverOverlay.style.display = "flex";
+                const playAgainButton = document.getElementById("play-again");
+                playAgainButton.addEventListener("click", function () {
+                  gameoverOverlay.style.display = "none";
+                })
                 resetGame();
               }, 500)
             }

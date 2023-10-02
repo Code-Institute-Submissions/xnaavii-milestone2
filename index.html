@@ -32,7 +32,7 @@
 
 <body>
     <!-- Game Header -->
-    <header>Animal Match</header>
+    <header><a href="index.html">Animal Match <i class="fa-solid fa-paw"></i></a></header>
     <!-- Game overlay with instructions-->
     <div class="overlay" id="howToPlayOverlay">
         <div class="modal">
@@ -48,8 +48,28 @@
             <button id="start-button">Start!</button>
         </div>
     </div>
+    <!-- Game overlay alerting the player when game is lost -->
+    <div class="overlay" id="gameoverOverlay">
+        <div class="modal">
+            <h2>You've ran out of lives!</h2>
+            <img src="assets/images/sad-cat.gif" alt="Cat animation" id="sad-cat">
+            <p>Better luck next time!</p>
+            <!-- Play Again button-->
+            <button id="play-again">Play Again!</button>
+        </div>
+    </div>
+    <!--Game overlay alerting the player when game is won -->
+    <div class="overlay" id="gamewonOverlay">
+        <div class="modal">
+            <h2>You win!</h2>
+            <img src="assets/images/happy-cat.gif" alt="Cat animation" id="happy-cat">
+            <p>Well done!</p>
+            <!-- Play Again button-->
+            <button id="play-again1">Play Again!</button>
+        </div>
+    </div>
     <section class="game-container">
-        <h2>Player: <span id="username"></span></h2>
+        <h2 id="assign-name">Player: <span id="username"></span></h2>
         <!-- Game tiles container-->
         <div class="tiles">
             <!-- Individual game tiles with data values-->
