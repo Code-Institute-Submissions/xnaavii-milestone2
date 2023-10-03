@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   startButton.addEventListener("click", function () {
     howToPlayOverlay.style.display = "none";
     runGame();
-  })
+  });
 
   function runGame() {
     // Select all elements with the class "tile" and other necessary elements
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const resetButton = document.getElementById("reset-btn");
     const scoreElement = document.getElementById("score");
     const livesElement = document.getElementById("lives");
-    const startButton = document.getElementById("start-button");
+
     const userInput = window.prompt("Player name?");
 
     // Set the variable values
@@ -98,9 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 const playAgainButton = document.getElementById("play-again1");
                 playAgainButton.addEventListener("click", function () {
                   gamewonOverlay.style.display = "none";
-                })
+                });
               resetGame();
-            }, 500) // Delay the message
+            }, 500); // Delay the message
           }
         } else {
           // If the tiles don't match, flip them back after a delay
@@ -136,11 +136,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 const playAgainButton = document.getElementById("play-again");
                 playAgainButton.addEventListener("click", function () {
                   gameoverOverlay.style.display = "none";
-                })
+                });
                 resetGame();
-              }, 500)
+              }, 500);
             }
-          }, 1000)
+          }, 1000);
         }
       }
     }
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tileInner.style.transform = "rotateY(0deg)";
         const image = tile.querySelector("img");
         image.classList.add("hidden");
-      })
+      });
     }
 
     // Event listener for the reset button
@@ -176,10 +176,10 @@ document.addEventListener("DOMContentLoaded", function () {
     tiles.forEach(tile => {
       tile.addEventListener("click", () => {
         flipTile(tile);
-      })
-    })
+      });
+    });
 
     // Function called to shuffle the tiles
     shuffleTiles();
   }
-})
+});
