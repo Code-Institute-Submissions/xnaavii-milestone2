@@ -5,7 +5,7 @@ body {
     /* Add background image */
     background-color: rgba(255, 166, 158, 0.5);
     background-image: url('../images/animals-pattern.png');
-    background-size: 130%;
+    background-size: 110%;
     background-repeat: repeat;
     background-position: 0;
     animation: moveBackground 10s linear infinite;
@@ -203,11 +203,6 @@ h3 {
 
 /* Style the game modal within the overlay */
 .modal {
-    background-color: rgba(147, 225, 216, 0.8);
-    background-image: url('../images/vines.png');
-    background-size: auto;
-    background-position: 0;
-    background-repeat: no-repeat;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
@@ -216,9 +211,8 @@ h3 {
 
 
 .modal {
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     background-color: rgba(255, 166, 158, 1);
+    color: rgba(30, 30, 30, 1);
     border: 1px solid rgba(30, 30, 30, 1);
     border-radius: 5px;
 }
@@ -286,4 +280,26 @@ footer {
 
 #social-media i:hover {
     color: rgba(255, 255, 255, 0.9);
+}
+
+@media screen and (min-width: 768px) {
+    .tiles {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 992px){
+    body {
+        background-size: 70%;
+    }
+    
+    header {
+        height: 80px;
+        font-size: 40px;
+    }
+
+    .game-container {
+        padding: 30px;
+        font-size: 20px;
+    }
 }
